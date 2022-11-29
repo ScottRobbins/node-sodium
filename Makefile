@@ -63,7 +63,6 @@ ifeq (,$(wildcard ${SODIUM_LIB}.*))
 	@cd $(LIBSODIUM_DIR)/ && ./configure --enable-static \
            --enable-shared --with-pic --prefix="$(INSTALL_DIR)"
 	@cd $(LIBSODIUM_DIR)/ && make clean > /dev/null
-	@cd $(LIBSODIUM_DIR)/ && make -j3 check
 	@cd $(LIBSODIUM_DIR)/ && make -j3 install
 else
 	@echo Found a compiled lib in ${INSTALL_DIR}. Make sure this library that was compiled for this platform.
@@ -151,9 +150,9 @@ clean:
 	-find ${LIBSODIUM_DIR} -name Makefile.in -delete
 	-find ${LIBSODIUM_DIR} -name *.trs -delete
 	-find ${LIBSODIUM_DIR}/test/default/ -type f ! -name "*.*" -delete
-	@echo 
+	@echo
 	@echo NOTICE: package-lock.json is not removed by default. Run \'make cleanall\' to remove it.
-	@echo 
+	@echo
 
 cleanbuild: clean
 	-rm -fr ./build
